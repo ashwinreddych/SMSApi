@@ -27,6 +27,7 @@ public class SMSClientController {
 		
 		try {
 
+			//Test service
 			URL url = new URL("https://api.catapult.inetwork.com/v1/users/u-bkgwz6x7ltl3g4nxdgu3uzy/messages");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			
