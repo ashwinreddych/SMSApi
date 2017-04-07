@@ -14,19 +14,20 @@ import org.jboss.resteasy.util.Base64;
 
 public class SMSClientController {
 	
-	public boolean sendMessage(){
+	public boolean sendMessage(String fromNumber, String toNumber){
 		
 		//Validate SMS
 		
 		//Send SMS
-		processSMS();
+		processSMS(fromNumber, toNumber);
 		return true;
 	}
 	
-	private boolean processSMS(){
+	private boolean processSMS(String fromNumber, String toNumber){
 		
 		try {
 
+			
 			//Test service
 			URL url = new URL("https://api.catapult.inetwork.com/v1/users/u-bkgwz6x7ltl3g4nxdgu3uzy/messages");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -39,7 +40,7 @@ public class SMSClientController {
 			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setRequestProperty("Authorization", "Basic " + authEncoded);
 
-			String input = "{\n  \"from\": \"4703091343\",\n  \"to\": \"123456789\",\n  \"text\": \"Good morning, this is a test message\"\n  \n}";
+			String input = "{\n  \"from\": \"4703091343\",\n  \"to\": "+toNumber+",\n  \"text\": \"Good morning, this is a test message\"\n  \n}";
 
 			OutputStream os = conn.getOutputStream();
 			os.write(input.getBytes());
